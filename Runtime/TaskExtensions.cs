@@ -1,21 +1,24 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Threading.Tasks;
 
-public static class TaskExtensions
+namespace GameCtor.UITestKit
 {
-    public static IEnumerator AsIEnumerator(this Task task)
+    public static class TaskExtensions
     {
-        while (!task.IsCompleted)
+        public static IEnumerator AsIEnumerator(this Task task)
         {
-            yield return null;
-        }
+            while (!task.IsCompleted)
+            {
+                yield return null;
+            }
 
-        if (task.IsFaulted)
-        {
-            throw
-                task.Exception.InnerExceptions != null && task.Exception.InnerExceptions.Count == 1
-                    ? task.Exception.InnerExceptions[0]
-                    : task.Exception;
+            if (task.IsFaulted)
+            {
+                throw
+                    task.Exception.InnerExceptions != null && task.Exception.InnerExceptions.Count == 1
+                        ? task.Exception.InnerExceptions[0]
+                        : task.Exception;
+            }
         }
     }
 }

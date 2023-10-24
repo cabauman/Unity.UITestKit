@@ -4,7 +4,6 @@
   "version": "0.1.0",
   "unity": "2018.1",
   "description": "Provides convenient base functionality for writing tests that verify user interaction.",
-  "type": "library",
   "keywords": [
     "ui",
     "test"
