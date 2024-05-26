@@ -1,5 +1,6 @@
 {
     "name": "GameCtor.UITestKit.Editor.Tests",
+    "rootNamespace": "GameCtor.UITestKit",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",

@@ -4,7 +4,7 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-namespace GameCtor.UITestKit.Editor.Tests
+namespace GameCtor.UITestKit
 {
     public class EditModeTests
     {
