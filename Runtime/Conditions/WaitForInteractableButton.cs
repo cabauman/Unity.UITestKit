@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace GameCtor.UITestKit
@@ -21,12 +21,12 @@ namespace GameCtor.UITestKit
 
             public override bool IsFulfilled()
             {
-                if (go is null)
+                if (go == null)
                 {
                     go = GameObject.Find(name);
                 }
 
-                if (go is null)
+                if (go == null)
                 {
                     return false;
                 }
@@ -41,12 +41,12 @@ namespace GameCtor.UITestKit
 
             public override string GetResult()
             {
-                if (go is null)
+                if (go == null)
                 {
                     return $"Waited for {name} to become clickable but it's either inactive or not present in the scene.";
                 }
 
-                if (button is null)
+                if (button == null)
                 {
                     return $"Waited for {name} to become clickable but it doesn't have a {nameof(Selectable)} component.";
                 }

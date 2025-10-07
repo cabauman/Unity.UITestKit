@@ -1,28 +1,17 @@
 using System.Collections;
-using System.Collections.Generic;
-using NUnit.Framework;
-using UnityEngine;
 using UnityEngine.TestTools;
 
 namespace GameCtor.UITestKit
 {
-    public class PlayModeTests
+    public class PlayModeTests : UITest
     {
-        // A Test behaves as an ordinary method
-        [Test]
-        public void PlayModeTestsSimplePasses()
-        {
-            // Use the Assert class to test conditions
-        }
-
-        // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
-        // `yield return null;` to skip a frame.
         [UnityTest]
         public IEnumerator PlayModeTestsWithEnumeratorPasses()
         {
-            // Use the Assert class to test conditions.
-            // Use yield to skip a frame.
-            yield return null;
+            yield return LoadScene("UITestScene");
+            yield return WaitUntilVisible<NewBehaviourScript>();
+            yield return Tap("MyButton");
+            yield return WaitUntilHidden<NewBehaviourScript>();
         }
     }
 }

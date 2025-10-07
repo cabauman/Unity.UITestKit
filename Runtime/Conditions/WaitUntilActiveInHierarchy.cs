@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace GameCtor.UITestKit
 {
@@ -11,9 +11,9 @@ namespace GameCtor.UITestKit
 
             public override bool IsFulfilled()
             {
-                if (obj is null)
+                if (obj == null)
                 {
-                    obj = GameObject.FindObjectOfType(typeof(T)) as T;
+                    obj = GameObject.FindObjectOfType(typeof(T), true) as T;
                 }
 
                 return obj != null && obj.gameObject.activeInHierarchy;
@@ -21,7 +21,7 @@ namespace GameCtor.UITestKit
 
             public override string GetResult()
             {
-                if (obj is null)
+                if (obj == null)
                 {
                     return $"Waited for {typeof(T).Name} to become active but it wasn't present in the scene.";
                 }
@@ -47,7 +47,7 @@ namespace GameCtor.UITestKit
 
             public override bool IsFulfilled()
             {
-                if (go is null)
+                if (go == null)
                 {
                     go = GameObject.Find(name);
                 }
@@ -57,7 +57,7 @@ namespace GameCtor.UITestKit
 
             public override string GetResult()
             {
-                if (go is null)
+                if (go == null)
                 {
                     return $"Waited for {name} to become active but it wasn't present in the scene.";
                 }

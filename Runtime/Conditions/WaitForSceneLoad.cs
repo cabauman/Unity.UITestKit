@@ -1,4 +1,5 @@
-﻿using UnityEngine.SceneManagement;
+using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 
 namespace GameCtor.UITestKit
 {
@@ -11,7 +12,8 @@ namespace GameCtor.UITestKit
             public WaitForSceneLoad(string name)
             {
                 this.name = name;
-                SceneManager.LoadScene(name, LoadSceneMode.Single);
+                EditorSceneManager.LoadSceneInPlayMode("Assets/Scenes/" + name + ".unity", new LoadSceneParameters());
+                //SceneManager.LoadScene(name, LoadSceneMode.Single);
             }
 
             public override bool IsFulfilled() => SceneManager.GetActiveScene().name.Equals(name);

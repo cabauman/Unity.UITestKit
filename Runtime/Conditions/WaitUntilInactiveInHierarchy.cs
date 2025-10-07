@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace GameCtor.UITestKit
 {
@@ -11,7 +11,7 @@ namespace GameCtor.UITestKit
 
             public override bool IsFulfilled()
             {
-                if (obj is null)
+                if (obj == null)
                 {
                     obj = GameObject.FindObjectOfType(typeof(T)) as T;
                 }
@@ -21,7 +21,7 @@ namespace GameCtor.UITestKit
 
             public override string GetResult()
             {
-                if (obj is null)
+                if (obj == null)
                 {
                     return $"Waited for {typeof(T).Name} to become inactive but it wasn't present in the scene.";
                 }
