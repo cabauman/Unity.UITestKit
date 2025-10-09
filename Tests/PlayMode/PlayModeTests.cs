@@ -6,12 +6,13 @@ namespace GameCtor.UITestKit
     public class PlayModeTests : UITest
     {
         [UnityTest]
+        //[LoadScene("Assets/Samples/UITestKit/UITestKitDemo.unity")]
         public IEnumerator PlayModeTestsWithEnumeratorPasses()
         {
-            yield return LoadScene("UITestScene");
-            yield return WaitUntilVisible<NewBehaviourScript>();
+            // Loading screen takes 1 second.
+            yield return WaitUntilActive<NewBehaviourScript>();
             yield return Tap("MyButton");
-            yield return WaitUntilHidden<NewBehaviourScript>();
+            yield return WaitUntilInactive<NewBehaviourScript>();
         }
     }
 }

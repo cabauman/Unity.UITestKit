@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System;
 using System.Threading.Tasks;
@@ -10,23 +11,16 @@ namespace GameCtor.UITestKit
 {
     public partial class UITest
     {
-        protected float timeout = 1f;
-
-        protected IEnumerator LoadScene(string name)
-        {
-            return WaitAsync(new WaitForSceneLoad(name), Environment.StackTrace).AsIEnumerator();
-        }
-
-        protected IEnumerator WaitUntilVisible<T>()
+        protected IEnumerator WaitUntilActive<T>(float timeout = 1f)
             where T : Component
         {
-            return WaitAsync(new WaitUntilActiveInHierarchy<T>(), Environment.StackTrace).AsIEnumerator();
+            return WaitAsync(new WaitUntilActiveInHierarchy<T>(), timeout, Environment.StackTrace).AsIEnumerator();
         }
 
-        protected IEnumerator WaitUntilHidden<T>()
+        protected IEnumerator WaitUntilInactive<T>(float timeout = 1f)
             where T : Component
         {
-            return WaitAsync(new WaitUntilInactiveInHierarchy<T>(), Environment.StackTrace).AsIEnumerator();
+            return WaitAsync(new WaitUntilInactiveInHierarchy<T>(), timeout, Environment.StackTrace).AsIEnumerator();
         }
 
         protected IEnumerator Tap(string buttonName)
@@ -34,7 +28,7 @@ namespace GameCtor.UITestKit
             return TapInternal(buttonName).AsIEnumerator();
         }
 
-        protected async Task WaitAsync(Condition condition, string stackTrace)
+        protected async Task WaitAsync(Condition condition, float timeout, string stackTrace)
         {
             var startTime = Time.time;
 
@@ -72,7 +66,7 @@ namespace GameCtor.UITestKit
         private async Task TapInternal(string buttonName)
         {
             var condition = new WaitForInteractableButton(buttonName);
-            await WaitAsync(condition, Environment.StackTrace);
+            await WaitAsync(condition, 1f, Environment.StackTrace);
             ExecuteEvents.Execute(condition.ButtonObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerClickHandler);
         }
     }
