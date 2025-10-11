@@ -13,7 +13,7 @@ namespace GameCtor.UITestKit
             {
                 if (obj == null)
                 {
-                    obj = GameObject.FindObjectOfType(typeof(T), true) as T;
+                    obj = GameObject.FindAnyObjectByType<T>(FindObjectsInactive.Exclude);
                 }
 
                 return obj != null && obj.gameObject.activeInHierarchy;
@@ -21,6 +21,7 @@ namespace GameCtor.UITestKit
 
             public override string GetResult()
             {
+                obj = GameObject.FindAnyObjectByType<T>(FindObjectsInactive.Include);
                 if (obj == null)
                 {
                     return $"Waited for {typeof(T).Name} to become active but it wasn't present in the scene.";

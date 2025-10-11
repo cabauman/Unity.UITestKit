@@ -13,7 +13,7 @@ namespace GameCtor.UITestKit
             {
                 if (obj == null)
                 {
-                    obj = GameObject.FindObjectOfType(typeof(T)) as T;
+                    obj = GameObject.FindAnyObjectByType<T>(FindObjectsInactive.Include);
                 }
 
                 return obj == null || !obj.gameObject.activeInHierarchy;
